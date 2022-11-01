@@ -10,12 +10,12 @@ const Navbar = () => {
   const links = [
     {
       id: 1,
-      path: '/',
+      path: '/todo-list-with-reactjs',
       text: 'Home',
     },
     {
       id: 2,
-      path: '/about',
+      path: '/todo-list-with-reactjs/about',
       text: 'About',
     },
   ];

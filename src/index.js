@@ -12,8 +12,8 @@ ReactDOM.render(
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<TodoContainer />} />
-        <Route path="about/*" element={<About />} />
+        <Route path="/todo-list-with-reactjs" element={<TodoContainer />} />
+        <Route path="/todo-list-with-reactjs/about/*" element={<About />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>

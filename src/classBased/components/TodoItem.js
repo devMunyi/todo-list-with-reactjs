@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
-  state = {
-    editing: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      editing: false,
+    };
+  }
 
   handleEditing = () => {
     this.setState({
@@ -18,10 +22,6 @@ class TodoItem extends React.Component {
     }
   };
 
-  componentWillUnmount() {
-    console.log('Cleaning up...');
-  }
-
   render() {
     const completedStyle = {
       fontStyle: 'italic',
@@ -29,13 +29,17 @@ class TodoItem extends React.Component {
       opacity: 0.4,
       textDecoration: 'line-through',
     };
-    const { id, title, completed } = this.props.todo;
-    const { handleChangeProps, deleteTodoProps, setUpdateProps } = this.props;
+
+    const {
+      handleChangeProps, deleteTodoProps, setUpdateProps, todo,
+    } = this.props;
+    const { id, title, completed } = todo;
 
     const viewMode = {};
     const editMode = {};
+    const { editing } = this.state;
 
-    if (this.state.editing) {
+    if (editing) {
       viewMode.display = 'none';
     } else {
       editMode.display = 'none';
@@ -51,7 +55,9 @@ class TodoItem extends React.Component {
             onChange={() => handleChangeProps(id)}
           />
           {' '}
-          <button onClick={() => deleteTodoProps(id)}>Delete</button>
+          <button type="button" onClick={() => deleteTodoProps(id)}>
+            Delete
+          </button>
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
         <input
@@ -68,5 +74,12 @@ class TodoItem extends React.Component {
     );
   }
 }
+
+TodoItem.propTypes = {
+  todo: PropTypes.objectOf(PropTypes.element).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  setUpdateProps: PropTypes.func.isRequired,
+};
 
 export default TodoItem;

@@ -1,8 +1,8 @@
-import React from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
+import React from 'react';
 import SinglePage from './SinglePage';
 
-const About = (props) => (
+const About = () => (
   <div className="about__content">
     <ul className="about__list">
       <li>

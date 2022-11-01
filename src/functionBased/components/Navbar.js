@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
@@ -30,7 +31,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navBar">
-        <button onClick={handleToggle}>
+        <button type="button" onClick={handleToggle}>
           {navbarOpen ? (
             <MdClose style={{ color: '#fff', width: '40px', height: '40px' }} />
           ) : (
@@ -40,13 +41,15 @@ const Navbar = () => {
           )}
         </button>
         <ul className={`menuNav ${navbarOpen ? ' showMenu' : ''}`}>
-          {links.map((link, id) => (
-            <li key={id}>
+          {links.map((link) => (
+            <li key={link.id}>
               <NavLink
                 to={link.path}
-                style={({ isActive }) => (isActive
-                  ? { color: 'orange', textDecoration: 'underline' }
-                  : { color: 'black', textDecoration: 'none' })}
+                style={({ isActive }) =>
+                  isActive
+                    ? { color: 'orange', textDecoration: 'underline' }
+                    : { color: 'black', textDecoration: 'none' }
+                }
                 onClick={() => closeMenu()}
               >
                 {link.text}
